@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Django Essentials{% endblock %}</title>
+    <!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">-->
+    <!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+
+
+    <style>
+        a{
+            text-decoration: none;
+        }
+        .right{
+            float:right;
+        }
+        .right a{
+            color:white;
+        }
+        .margin-top {
+            margin-top:100px;
+        }
+        .ul {
+            float: left;
+        }
+
+    </style>
+</head>
+<body>
+<div>
+    <div>
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark pmd-navbar pmd-z-depth" id="navbar"
+             style="background-color: #082f38;">
+            <a class="navbar-brand" href="#">Django CRUD</a>
+            <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'index'%}">Laptop</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'book-list'%}">Book</a>
+            </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'user_logout' %}">Logout</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">Welcome, {{user.username}}</a>
+                </li>
+                {% else %}
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    <div class="container margin-top">
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
+{% include 'msg/messages.htm' %}
+</body>
+</html>

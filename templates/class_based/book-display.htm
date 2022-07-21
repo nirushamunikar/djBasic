@@ -1,0 +1,76 @@
+{% extends 'usermanagement/base.htm' %}
+{% block content %}
+<div class="row">
+    <div class="col">
+        <div style="display: flex; justify-content:space-between;">
+            <h2 class="display-4">Book Details</h2>
+            <a href="{% url 'book-create' %}">
+                <button class="btn btn-success right">Add Book</button>
+            </a>
+        </div>
+        <div>
+            {% if books %}
+            <table class="table" style="text-align:center;">
+                <caption></caption>
+                <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">ISBN</th>
+                    <th scope="col">Update</th>
+                    <th scope="col">Delete</th>
+                    <th scope="col">View</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for book in books %}
+
+                <tr>
+                    <td>{{book.name}}</td>
+                    <td>{{book.isbn}}</td>
+                    <td>
+                        <a href="{% url 'book-update' book.id %}">
+                            <i class="bi bi-pencil-square" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{% url 'book-delete' book.id %}">
+                            <i class="bi bi-trash-fill" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{% url 'book-detail' book.id %}">
+                            <i class="bi bi-eye" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="container p-4">
+                <div class="pagination justify-content-center">
+                    <span class="step-links">
+                      {% if books.has_previous %}
+                          <a href="?page=1">&laquo;first</a>
+                          <a href="?page={{ books.previous_page_number }}">previous</a>
+                      {% endif %}
+
+                        <span class="current">
+                            Page {{ books.number }} of {{ books.paginator.num_pages }}
+                        </span>
+
+                      {% if books.has_next %}
+                          <a href="?page={{ books.next_page_number }}">next</a>
+                          <a href="?page={{ books.paginator.num_pages }}">last &raquo;</a>
+                      {% endif %}
+                    </span>
+                </div>
+            </div>
+            {% else %}
+            <h4 class="text-center alert alert-warning">No book records</h4>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

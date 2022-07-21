@@ -1,0 +1,49 @@
+{% extends 'usermanagement/base.htm' %}
+{% block title %}Update {{queryset.name}} {% endblock %}
+
+{% block content %}
+<div>
+    <div>
+        <h5 class="card-title">Laptop Update #{{queryset.id}}</h5>
+    </div>
+    <form action="{% url 'update' queryset.id %}" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col">
+                <label for="model">Model Name</label>
+                <input type="text" class="form-control" name="model" value="{{queryset.name}}">
+            </div>
+            <div class="col">
+                <label for="manufacturer">Manufacturer</label>
+                <input type="text" class="form-control" name="manufacturer" value="{{queryset.manufacturer}}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="gpu">GPU</label>
+                <input type="text" class="form-control" name="gpu" value="{{queryset.gpu}}">
+            </div>
+            <div class="col">
+                <label for="cpu">CPU</label>
+                <input type="text" class="form-control" name="cpu" value="{{queryset.cpu}}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="ram">RAM</label>
+                <input type="text" class="form-control" name="ram" value="{{queryset.ram}}">
+            </div>
+            <div class="col">
+                <label for="price">Price</label>
+                <input type="text" class="form-control" name="price" value="{{queryset.price}}">
+            </div>
+        </div>
+        <button class="btn btn-success" type="submit">Update</button>
+    </form>
+    <a href="{% url 'index' %}">
+        <button class="btn btn-danger right">Go Back</button>
+    </a>
+</div>
+
+
+{% endblock %}

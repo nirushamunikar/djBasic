@@ -1,0 +1,44 @@
+{% extends 'usermanagement/base.htm' %}
+{% block title %}Add a new laptop{% endblock %}
+
+{% block content %}
+<div>
+    <form action="{% url 'create' %}" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col">
+                <label for="model">Model Name</label>
+                <input type="text" class="form-control" name="model">
+            </div>
+            <div class="col">
+                <label for="manufacturer">Manufacturer</label>
+                <input type="text" class="form-control" name="manufacturer">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+                <label for="gpu">GPU</label>
+                <input type="text" class="form-control" name="gpu">
+            </div>
+            <div class="col">
+                <label for="cpu">CPU</label>
+                <input type="text" class="form-control" name="cpu">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+                <label for="ram">RAM</label>
+                <input type="text" class="form-control" name="ram">
+            </div>
+            <div class="col">
+                <label for="price">Price</label>
+                <input type="text" class="form-control" name="price">
+            </div>
+          </div>
+          <button class="btn btn-primary" type="submit">Add</button>
+    </form>
+    <a href="{% url 'index' %}">Back</a>
+</div>
+
+
+{% endblock %}

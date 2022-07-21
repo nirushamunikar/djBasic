@@ -1,0 +1,13 @@
+{% extends 'usermanagement/base.htm' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h2>Add a book</h2>
+<div>
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-success">Add</button>
+    </form>
+    <a href="{% url 'book-list' %}"><button class="btn btn-danger right">Go Back</button></a>
+</div>
+{% endblock %}

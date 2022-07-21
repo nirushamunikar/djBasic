@@ -1,0 +1,21 @@
+{% extends 'usermanagement/base.htm' %}
+{% block content %}
+<div>
+    <div>
+        <h5>Delete Book #{{object.id}}</h5>
+    </div>
+    <div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="alert alert-warning" role="alert">
+                Are you sure you want to delete <strong>{{ object }}</strong> ?
+            </div>
+            <button type="submit" class="btn btn-danger right">Delete</button>
+        </form>
+        <a href="{% url 'book-list' %}">
+            <button class="btn btn-success right">Cancel</button>
+        </a>
+
+    </div>
+</div>
+{% endblock %}
