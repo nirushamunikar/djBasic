@@ -14,9 +14,6 @@ from django.http import HttpResponse
 from django.contrib.auth.tokens import default_token_generator
 
 # Create your views here.
-def home(request):
-    return render(request, 'usermanagement/base.htm')
-
 def register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
